@@ -18,6 +18,10 @@ jobs:
           # clone do projeto
           - name: Checkout/clone do repositório
             uses: actions/checkout@v6
+        
+          # configuração do node e instalação das dependências
+          - name: Instalar dependências do projeto
+            run: npm install
 
           # execução e configuração dos testes   
           - name: Run testes
