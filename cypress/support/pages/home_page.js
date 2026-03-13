@@ -7,7 +7,7 @@ export default {
         cy.visit("/")
             .get('#top_header')
 
-        cy.get('.fa-user1')
+        cy.get('.fa-user')
             .click();
     },
 
