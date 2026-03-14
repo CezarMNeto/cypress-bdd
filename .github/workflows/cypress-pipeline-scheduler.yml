@@ -1,0 +1,36 @@
+name: Cypress Tests - Scheduler
+
+on:
+  schedule:
+    - cron: '0 0 * * 1-5' # Runs every weekday at midnight
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Cypress
+        uses: cypress-io/github-action@v7
+        with:
+          browser: chrome
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
+      - name: Upload Cypress Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-report
+          path: cypress/reports
