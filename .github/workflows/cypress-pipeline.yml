@@ -26,3 +26,9 @@ jobs:
           browser: chrome
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
+      - name: Upload relatório
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: cypress/reports
